@@ -4,17 +4,22 @@
 
 #include "van.h"
 
-int a, b;
+int a, b, c;
 
 int main() {
-
-
-  printf("Vvedi a: ");
-  scanf_s("%d", & a);
-  printf("Vvedi b: ");
-  scanf_s("%d", & b);
-  func();
-
+	
+	printf("Vvedi 1 storony: ");
+	scanf_s("%d", & a);
+	printf("Vvedi 2 storony: ");
+	scanf_s("%d", & b);
+	printf("Vvedi 3 storony: ");
+	scanf_s("%d", & c);
+	  
+	
+	func();
+	
+	
+	
   
   return 0;
 }
