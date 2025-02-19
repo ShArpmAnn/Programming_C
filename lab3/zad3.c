@@ -5,11 +5,11 @@
 
 int main(int argc, char *argv[]) {
 	
-	char a[80];
+	char a[81];
 	
 	
 	printf("Vvedi stroku do 80 simvolov: ");
-	fgets(a, 80, stdin);
+	fgets(a, 81, stdin);
 	printf("%s", a);
 	
 	
