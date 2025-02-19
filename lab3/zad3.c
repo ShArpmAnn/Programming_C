@@ -8,13 +8,16 @@ int main(int argc, char *argv[]) {
 	char a[81];
 	int i;
 	
+	
 	printf("Vvedi stroku do 80 simvolov: ");
 	fgets(a, 81, stdin);
 	for (i = 0; i < (strlen(a)); i++){
-		printf("%c \n", a[i]);
+		if (a[i] == 'a') a[i] = 'A';
+		if (a[i] == 'b') a[i] = 'B';
+
 	}
 		
-	
+	printf("%s", a);
 	
 	
 	return 0;
