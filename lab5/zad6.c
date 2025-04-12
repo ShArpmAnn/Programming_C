@@ -6,9 +6,8 @@ int n, i, j, a, b;
 double **A, **B, **C;
 
 int main(int argc, char *argv[]) {
-	exit(1);
 	char ch;
-	printf("Vvedi znak dey('+', '-' или '*') ");
+	printf("Vvedi znak dey('+', '-' ГЁГ«ГЁ '*') ");
 	scanf("%c", &ch);
 	
 	
