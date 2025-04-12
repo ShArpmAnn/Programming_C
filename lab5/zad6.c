@@ -7,7 +7,7 @@ double **A, **B, **C;
 
 int main(int argc, char *argv[]) {
 	char ch;
-	printf("Vvedi znak dey('+', '-' ГЁГ«ГЁ '*') ");
+	printf("Vvedi znak dey('+', '-' или '*') ");
 	scanf("%c", &ch);
 	
 	
@@ -43,10 +43,11 @@ int main(int argc, char *argv[]) {
 	}
 	
 	
-	C = deynadmatr(**A, **B, ch, n);
+	C = deynadmatr(A, B, ch, n);
 	for (i=0; i<n; i++){
+		printf("\n");
 		for (j=0; j<n; j++){
-			printf("%lf", C[i][j]);
+			printf("%lf    ", C[i][j]);
 		}
 	}
 	

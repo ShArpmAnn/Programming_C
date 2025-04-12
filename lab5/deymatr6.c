@@ -3,7 +3,7 @@
 
 
 double **deynadmatr(double **A, double **B, char ch, int n){
-	int i, j, k:
+	int i, j, k;
 	double ** REZM;
 	
 	REZM = (double**)malloc(n*sizeof(double*));
