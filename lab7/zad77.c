@@ -27,7 +27,7 @@ int main(int argc, char *argv[]) {
     }
 	
 	
-	strcpy(B, A);
+	memcpy(B, A);
     
     qsort(B, 4, sizeof(struct humen), sravnYear);
 
