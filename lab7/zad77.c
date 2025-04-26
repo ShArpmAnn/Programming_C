@@ -3,7 +3,7 @@
 #include <string.h>
 /* run this program using the console pauser or add your own getch, system("pause") or input loop */
 
-
+FILE *f1;
 int i;
 struct humen {
     char imen[30];
@@ -22,8 +22,9 @@ int sravnYear(const void *a, const void *b) {
 int main(int argc, char *argv[]) {
 	
 	for (i = 0; i < 4; i++) {
-        printf("Vvedi Ime, familia i god rozdenia %d: ", i + 1);
+        printf("Vvedi Name, familia i god rozdenia: ");
         scanf("%s %s %d", A[i].imen, A[i].famil, &A[i].year);
+        
     }
 	
 	
