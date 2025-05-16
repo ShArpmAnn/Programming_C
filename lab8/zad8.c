@@ -1,58 +1,90 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-/* run this program using the console pauser or add your own getch, system("pause") or input loop */
+#include <stdbool.h>
 
-int i, k, znachvib;
-FILE *f1, *f2;
 
-struct humen{
-    char name[30];
-    char surname[30];
-    int year;
-    char gender;
-    float height;
-    int index;
+
+struct human{
+	char name[50]; 
+	char lastname[50]; 
+	int year; 
+	char gend[3]; 
+	float height; 
 };
+struct human B[100], temp;
 
-struct humen A[1000], B[1000];
-
-int sravn(const void *a, const void *b) {
-	while (znachvib != 5){
-		printf("Vvedi po chem stravn(name - 0, surn - 1, year - 2, gend - 3, hight - 4, exit - 5)\n");
-		scanf("%d", &znachvib);
-		if (znachvib == 0) return ((struct humen *)a)->year - ((struct humen *)b)->year;;
-		if (znachvib == 1) return strcmp(((struct humen *)a)->name, ((struct humen *)b)->name);
-		if (znachvib == 2) return strcmp(((struct humen *)a)->surname, ((struct humen *)b)->surname);
-		if (znachvib == 3) return ((struct humen *)a)->gender - ((struct humen *)b)->gender;
-		if (znachvib == 4) {
-			if (((struct humen *)a)->height < ((struct humen *)b)->height) return -1;
-	    	if (((struct humen *)a)->height > ((struct humen *)b)->height) return 1;
-	    	return 0;
-		}	
+int sravn(const struct human* a, const struct human* b, const char* choose) {
+	int i;
+	for (i = 0; choose[i] != '\0'; i++) {
+		switch (choose[i]) {
+		case 'y': 
+			if (a->year != b->year) {
+				return a->year - b->year;
+			}
+			break;
+		case 'n': 
+		{
+			int cmp = strcmp(a->name, b->name);
+			if (cmp != 0) return cmp;
+			break;
+		}
+		case 'l': 
+		{
+			int cmp = strcmp(a->lastname, b->lastname);
+			if (cmp != 0) return cmp;
+			break;
+		}
+		case 'g': 
+			if (a->gend != b->gend) {
+				return a->gend - b->gend;
+			}
+			break;
+		case 'h': 
+			if (a->height != b->height) {
+				return (a->height > b->height) ? 1 : -1;
+			}
+			break;
+		}
 	}
-}
-
-
-
-int main(int argc, char *argv[]) {
-	f1 = fopen("vvod8.txt", "rt");
-    int n = 0;
-    while ((fscanf(f1, "%s %s %d %c %f", A[i].name, A[i].surname, &A[i].year, &A[i].gender, &A[i].height)) != EOF) {
-        i++;
-    }
-    fclose(f1);
-    k = i;
-	
-	memcpy(B, A, sizeof(A));
-	
-	qsort(B, 5, sizeof(struct humen), sravn);
-		
-		
-	printf("Vivod:\n");
-	for (i = 0; i < k; i++) {
-	    printf("%s %s %d %c %.2f\n", B[i].name, B[i].surname, B[i].year, B[i].gender, B[i].height);
-	}
-	printf("\n");
 	return 0;
 }
+
+int main() {
+	FILE* f1 = fopen("vvod8.txt","rt");
+	
+	int k = 0;
+	int i = 0, j;
+	while (fscanf(f1, "%s %s %d %s %f", B[k].name, B[k].lastname,  &B[k].year, &B[k].gend, &B[k].height) != EOF) {
+		k++;
+		
+	}
+	fclose(f1);
+
+
+	char choose[10];
+	printf("Vvedi kreterii (y - year, n - name, l - lastname, g - gender, h - hight) (Vvodi po poredku): ");
+	scanf("%s", choose);
+
+
+	for (i = 0; i < k - 1; i++) {
+		for (j = 0; j < k - i - 1; j++) {
+			if (sravn(&B[j], &B[j + 1], choose) > 0) {
+				temp = B[j];
+				B[j] = B[j + 1];
+				B[j + 1] = temp;
+			}
+		}
+	}
+
+	
+	for (i = 0; i < k; ++i) {
+		printf("%s %s %d %s %.2f\n", B[i].name, B[i].lastname, B[i].year, B[i].gend, B[i].height);
+	}
+
+
+
+	return 0;
+}
+
